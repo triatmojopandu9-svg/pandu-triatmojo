@@ -1,0 +1,466 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pandu</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #38bdf8;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 8% 60px;
+            background:
+                radial-gradient(circle at top right, rgba(56,189,248,0.2), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(99,102,241,0.2), transparent 35%),
+                #0f172a;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(56,189,248,0.12);
+            color: #38bdf8;
+            padding: 8px 18px;
+            border: 1px solid rgba(56,189,248,0.4);
+            border-radius: 30px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 8vw, 78px);
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero h2 {
+            color: #94a3b8;
+            font-weight: normal;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #cbd5e1;
+            font-size: 17px;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(56,189,248,0.3);
+        }
+
+        .btn-outline {
+            border: 1px solid #38bdf8;
+            color: #38bdf8;
+        }
+
+        .btn-outline:hover {
+            background: #38bdf8;
+            color: #0f172a;
+        }
+
+        /* SECTION */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+        }
+
+        .section-title span {
+            color: #38bdf8;
+        }
+
+        .section-title p {
+            color: #94a3b8;
+            margin-top: 10px;
+        }
+
+        /* ABOUT */
+        .about {
+            background: #111827;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(30,41,59,0.7);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 30px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(56,189,248,0.5);
+        }
+
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+        }
+
+        /* SKILLS */
+        .skills-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            transform: scale(1.04);
+        }
+
+        .skill .icon {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .skill h3 {
+            margin-bottom: 8px;
+        }
+
+        .skill p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #111827;
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-box p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #020617;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        footer span {
+            color: #38bdf8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav ul li a {
+                font-size: 12px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">PAN<span>DU</span></div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#skills">Keahlian</a></li>
+        <li><a href="#contact">Kontak</a></li>
+    </ul>
+</nav>
+
+
+<!-- HOME -->
+<section class="hero" id="home">
+    <div class="hero-content">
+
+        <div class="badge">
+            👋 Selamat Datang di Website Saya
+        </div>
+
+        <h1>Halo, Saya <span>Pandu</span></h1>
+
+        <h2>Pelajar • Teknologi • Jaringan Komputer</h2>
+
+        <p>
+            Saya adalah seorang pelajar yang tertarik dengan dunia teknologi,
+            jaringan komputer, pemrograman, dan pengembangan website.
+        </p>
+
+        <div class="buttons">
+            <a href="#about" class="btn btn-primary">
+                Tentang Saya
+            </a>
+
+            <a href="#contact" class="btn btn-outline">
+                Hubungi Saya
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <div class="section-title">
+        <h2>Tentang <span>Saya</span></h2>
+        <p>Mengenal saya lebih dekat</p>
+    </div>
+
+    <div class="about-container">
+
+        <div class="card">
+            <h3>👨‍💻 Profil</h3>
+
+            <p>
+                Nama saya <strong>Pandu Triatmojo</strong>.
+                Saya merupakan pelajar yang sedang mempelajari
+                teknologi informasi dan jaringan komputer.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Tujuan</h3>
+
+            <p>
+                Saya ingin terus mengembangkan kemampuan di bidang
+                teknologi, khususnya jaringan komputer, pemrograman,
+                dan pembuatan website.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+
+    <div class="section-title">
+        <h2>Keahlian <span>Saya</span></h2>
+        <p>Beberapa bidang yang sedang saya pelajari</p>
+    </div>
+
+    <div class="skills-container">
+
+        <div class="skill">
+            <div class="icon">🌐</div>
+            <h3>Jaringan Komputer</h3>
+            <p>
+                Mempelajari konfigurasi jaringan,
+                IP Address, routing, dan troubleshooting.
+            </p>
+        </div>
+
+        <div class="skill">
+            <div class="icon">💻</div>
+            <h3>HTML & CSS</h3>
+            <p>
+                Membuat dan mendesain website
+                menggunakan HTML dan CSS.
+            </p>
+        </div>
+
+        <div class="skill">
+            <div class="icon">⚙️</div>
+            <h3>Teknologi</h3>
+            <p>
+                Mempelajari berbagai teknologi
+                komputer dan sistem jaringan.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+
+    <div class="section-title">
+        <h2>Hubungi <span>Saya</span></h2>
+        <p>Terima kasih sudah mengunjungi website saya.</p>
+    </div>
+
+    <div class="contact-box">
+
+        <p>
+            Jika ingin menghubungi saya atau berdiskusi
+            mengenai teknologi dan jaringan komputer,
+            silakan gunakan kontak berikut.
+        </p>
+
+        <a href="mailto:emailkamu@example.com"
+           class="btn btn-primary">
+            ✉️ Kirim Email
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+    © 2026 <span>Pandu Triatmojo</span> — Personal Website
+</footer>
+
+</body>
+</html>
+```
